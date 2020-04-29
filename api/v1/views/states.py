@@ -62,19 +62,14 @@ def post_states():
 def put_state(state_id):
     """State object: PUT
     """
-    comodin = storage.get("State", state_id)
+    state = storage.get('State', state_id)
+    if not state:
+        abort(404)
 
-    if comodin is None:
-        abort(404, "Not a JSON")
-
-        if not request.get_json():
-            abort(400, description="Not a JSON")
-
-    ignore = ['id', 'created_at', 'updated_at']
-    arlequin = request.get_json()
-
-    for key, value in arlequin.items():
-        if key not in ignore:
+    if not request.json:
+        abort(400, "Not a JSON")
+    for key, value in request.json.items():
+        if key not in ["id", "created_at", "updated_at"]:
             setattr(state, key, value)
-    storage.save()
-    return make_response(jsonify(state.to_dict()))
+    state.save()
+    return make_response(jsonify(state.to_dict()), 200)
