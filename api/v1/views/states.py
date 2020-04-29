@@ -41,9 +41,9 @@ def post_states():
     """POST request"""
     info = request.get_json()
     if not info:
-        abort(404, "Not a JSON")
+        abort(400, "Not a JSON")
     if "name" not in info:
-        abort(404, "Missing name")
+        abort(400, "Missing name")
     new = State(**info)
     new.save()
     return jsonify(new.to_dict()), 201
@@ -57,7 +57,7 @@ def put_states(state_id):
         abort(404)
     info = request.get_json()
     if not info:
-        abort(404, "Not a JSON")
+        abort(400, "Not a JSON")
     for key, value in info.items():
         if key not in ["id", "created_at", "updated_at"]:
             setattr(state, key, value)
