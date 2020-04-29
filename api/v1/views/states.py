@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Create a new view for State objects
 """
-from flask import Flask, make_response, abort, jsonify, request
-from api.v1.views import app_views
 from models import storage
 from models.state import State
+from api.v1.views import app_views
+from flask import Flask, abort, jsonify, make_response, request
 
 
 @app_views.route('/states', methods=['GET', 'POST'])
@@ -51,8 +51,8 @@ def post_states():
     if 'name' not in request.get_json():
         abort(404, "Missing name")
 
-    datatype = request.get_json()
-    temp = State(**dataype)
+    data = request.get_json()
+    temp = State(**data)
     temp.save()
     return make_response(jsonify(temp.to_dict()), 201)
 
