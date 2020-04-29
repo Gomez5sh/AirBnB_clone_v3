@@ -40,8 +40,10 @@ def post_users():
     info = request.get_json()
     if not info:
         abort(400, "Not a JSON")
-    if "name" not in info:
-        abort(400, "Missing name")
+    if 'email' not in request.get_json():
+        abort(400, "Missing email")
+    if 'password' not in request.get_json():
+        abort(400, "Missing password")
     new = User(**info)
     new.save()
     return jsonify(new.to_dict()), 201
