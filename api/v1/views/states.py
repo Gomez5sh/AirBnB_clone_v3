@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Create a new view for State objects
 """
-from flask import Flask, make_response, abort, jsonify, Request
+from flask import Flask, make_response, abort, jsonify, request
 from api.v1.views import app_views
 from models import storage
-
+from models.state import Stat
 
 @app_views.route('/states', methods=['GET', 'POST'])
 def get_all_states():
