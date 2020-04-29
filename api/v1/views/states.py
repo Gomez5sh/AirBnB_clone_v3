@@ -8,7 +8,8 @@ from flask import Flask, abort, jsonify, make_response, request
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
-def get_all_states():
+@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+def get_all_states(state_id=None):
     """Retrieves the list of all State
     """
     n = []
