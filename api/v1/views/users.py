@@ -61,7 +61,7 @@ def put_users(user_id):
     if not info:
         abort(400, "Not a JSON")
     for key, value in info.items():
-        if key not in ["id", "created_at", "updated_at"]:
+        if key not in ["id", "email", "created_at", "updated_at"]:
             setattr(user, key, value)
     storage.save()
     return jsonify(user.to_dict()), 200
