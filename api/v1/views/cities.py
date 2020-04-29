@@ -10,7 +10,7 @@ from models.city import City
 @app_views.route("/states/<state_id>/cities",
                  methods=["GET"],
                  strict_slashes=False)
-def cities_by_state(states_id):
+def cities_by_state(state_id=None):
     """GET cities by state request"""
     cities_list = []
     state = storage.get(State, state_id)
