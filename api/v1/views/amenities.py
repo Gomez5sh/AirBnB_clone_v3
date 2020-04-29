@@ -6,7 +6,9 @@ from models import storage
 from models.amenity import Amenity
 
 
-@app_views.route("/amenities/<amenity_id>", methods=["GET"], strict_slashes=False)
+@app_views.route("/amenities/<amenity_id>",
+                 methods=["GET"],
+                 strict_slashes=False)
 @app_views.route("/amenities", methods=["GET"], strict_slashes=False)
 def get_amenities(amenity_id=None):
     """GET request"""
@@ -49,7 +51,9 @@ def post_amenities():
     return jsonify(new.to_dict()), 201
 
 
-@app_views.route("/amenities/<amenity_id>", methods=["PUT"], strict_slashes=False)
+@app_views.route("/amenities/<amenity_id>",
+                 methods=["PUT"],
+                 strict_slashes=False)
 def put_amenities(amenity_id):
     """PUT request"""
     amenity = storage.get(Amenity, amenity_id)
