@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Amenity request methods handler"""
+"""User request methods handler"""
 from flask import jsonify, abort, request
 from api.v1.views import app_views
 from models import storage
@@ -8,7 +8,7 @@ from models.user import User
 
 @app_views.route("/users/<user_id>", methods=["GET"], strict_slashes=False)
 @app_views.route("/users", methods=["GET"], strict_slashes=False)
-def get_amenities(user_id=None):
+def get_users(user_id=None):
     """GET request"""
     user_list = []
     if not user_id:
@@ -24,7 +24,7 @@ def get_amenities(user_id=None):
 
 
 @app_views.route("/users/<user_id>", methods=["DELETE"], strict_slashes=False)
-def delete_amenities(user_id):
+def delete_users(user_id):
     """DELETE request"""
     user = storage.get(User, user_id)
     if not user:
@@ -35,7 +35,7 @@ def delete_amenities(user_id):
 
 
 @app_views.route("/users", methods=["POST"], strict_slashes=False)
-def post_amenities():
+def post_users():
     """POST request"""
     info = request.get_json()
     if not info:
@@ -48,7 +48,7 @@ def post_amenities():
 
 
 @app_views.route("/users/<user_id>", methods=["PUT"], strict_slashes=False)
-def put_amenities(user_id):
+def put_users(user_id):
     """PUT request"""
     user = storage.get(User, user_id)
     if not user:
