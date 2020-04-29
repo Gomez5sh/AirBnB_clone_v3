@@ -59,7 +59,7 @@ def put_states(state_id):
     if not info:
         abort(404, "Not a JSON")
     for key, value in info.items():
-        if key != "id" or key != "created_at" or key != "update_at":
+        if key != "id" and key != "created_at" and key != "update_at":
             setattr(state, key, value)
     storage.save()
     return jsonify(state.to_dict()), 200
