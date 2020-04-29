@@ -17,16 +17,16 @@ def review_by_place(place_id=None):
         abort(404)
     for review in place.review:
         review_list.append(review.to_dict())
-    return jsonify(cities_list)
+    return jsonify(review_list)
 
 
 @app_views.route("/reviews/<review_id>", methods=["GET"], strict_slashes=False)
 def get_review(review_id):
     """GET request"""
     review = storage.get(Review, review_id)
-    if not city:
+    if not review:
         abort(404)
-    return jsonify(city.to_dict())
+    return jsonify(review.to_dict())
 
 @app_views.route("/reviews/<review_id>", methods=["DELETE"], strict_slashes=False)
 def delete_review(review_id):
