@@ -9,7 +9,7 @@ from models.state import City
 
 @app_views.route("/states/<state_id>/cities", methods=["GET"], strict_slashes=False)
 @app_views.route("/cities", methods=["GET"], strict_slashes=False)
-def get_cities(city_id=None):
+def get_cities(state_id=None):
     """GET request"""
     City_list = []
     if not state_id:
