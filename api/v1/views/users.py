@@ -13,9 +13,9 @@ def get_users(user_id=None):
     user_list = []
     if not user_id:
         users = storage.all(User).values()
-        for user in user:
+        for user in users:
             user_list.append(user.to_dict())
-        return jsonify(user_list)
+        return jsonify(users_list)
     else:
         user = storage.get(User, user_id)
         if not user:
